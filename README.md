@@ -40,3 +40,11 @@ Plexiglas ist ein optionales Bauteil.
 | Wasserdeckel  | PLA, PETG (2 Teile)                                                                                                        |
 | Plexiglas     | Kann durch Bauteil "BlindCover" aus .step Datei ersetzt werden, 4mm Plexiglas, Vorsicht vor giftigen Kunststoffen |
 | Bais-Steckverbinder    | Teilweise sehr klein, nur der Kreuzverbinder in der Mitte ist zwingend erforderlich. |
+
+## Platinenübersicht
+
+<img src="./Platine Wassersystem.svg">
+
+## Programmlauf
+
+<img src="./WasserSystemAblauf.svg">
