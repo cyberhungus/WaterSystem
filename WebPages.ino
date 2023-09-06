@@ -32,7 +32,7 @@ String MainPage() {
 
   sHTML += "<p>";
   sHTML += "Füllstand ";
-  sHTML += String(100);
+  sHTML +=  "<div id =\"percentageElement\">" + String(percentage) + "</div>";
   sHTML += "%";
   sHTML += "</p>";
 
@@ -176,7 +176,21 @@ String MainPage() {
   sHTML += "</script> ";
 
 
+//script für anzeige des Füllstandes 
+  sHTML +=  "<script>";
+  sHTML += "setInterval(function() {getData6();}," + String(interv) + ");";
+  sHTML += "function getData6() {";
+  sHTML += "var xhttp = new XMLHttpRequest();";
+  sHTML += "xhttp.onreadystatechange = function() {";
+  sHTML += "if (this.readyState == 4 && this.status == 200) {";
+  sHTML += "document.getElementById(\"percentageElement\").innerHTML = ";
+  sHTML += "this.responseText; ";
+  sHTML += "}  }; xhttp.open(\"GET\", \"percentage\", true); ";
+  sHTML += "xhttp.send();}";
+  sHTML += "</script> ";
 
+  sHTML += "<hr>";
+  sHTML += "MM 2023 für MobilDigital";
   LED_Yellow();
   return sHTML;
 }
@@ -247,7 +261,9 @@ String showMoisture() {
 String showThreshold() {
   return String(threshold);
 }
-
+String showPercentage() {
+  return String(percentage);
+}
 String showManualPumpState() {
   if (manualPumpTriggered) {
     return "Manuelles Pumpen aktiviert";

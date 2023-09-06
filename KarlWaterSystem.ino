@@ -14,11 +14,11 @@
 
 //LOGIN DATEN FÜR SYSTEM
 const char* ssid = "WasserSystem";
-const char* password = "digitalVHS";
+const char* password = "digitalMoDi";
 //unter welcher addresse soll die website erreichbar sein?
 //WICHTIG - am besten keine Website wählen, die "echt" ist und anwender bei fehlerhafter konfiguration auf SCHADCODE, MALWARE etc. führen könnte!
 //wasser . de ist zum beispiel ein pumpen - onlinehandel
-const char* domainName = "wasser-system-vhs.xyz";
+const char* domainName = "wasser-system-modi.xyz";
 
 //erstelle server objekte - dns server ist ein "wegweiser" (nur für die costum URL)
 DNSServer dnsServer;
@@ -62,7 +62,8 @@ int moisture = 0;
 
 //Distanz zum wasser wird hier gespeichert
 float currentDistance = 0.5;
-
+//Füllstand in Prozent
+float percentage = 100;
 
 //intervall zwischen feuchtigkeitsmessungen in ms
 int interv = 500;
@@ -201,10 +202,11 @@ void WaterCode(void * pvParameters ) {
     }
 
     currentDistance = measureDistance();
+    percentage = percentageFromDistance(currentDistance); 
     Serial.print("[TEST]Messe Distanz mit UltraSchall: ");
     Serial.println(currentDistance);
     Serial.print("[TEST]Percentage:");
-    Serial.println(percentageFromDistance(currentDistance));
+    Serial.println(percentage);
 
     if (autoCalibrationTriggered) {
       PerformAutoCalibration(10);
@@ -360,9 +362,14 @@ void serverStart() {
     request->redirect("/");
   });
 
-  //api-route - gibt nur messwert des sensors zurück
+  //api-route - gibt nur messwert des feuchtigkeitssensors zurück
   server.on("/moisture", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(200, "text/html", showMoisture());
+  });
+
+    //api-route - gibt nur messwert des ultraschallsensors zurück
+  server.on("/percentage", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(200, "text/html", showPercentage());
   });
 
   //api route für infos ob manuelles pumpen gerade aktiv ist
