@@ -34,12 +34,13 @@ Plexiglas ist ein optionales Bauteil.
 
 | Bauteile      | Kommentar                                                                                                         |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Basis         | Aus PETG, 4 Teile + Bais-Steckverbinder. Bauteile sollten verklebt werden                                         |
+| Basis         | Aus PETG, 4 Teile + Bais-Steckverbinder. Bauteile sollten verklebt werden, ausrichten mit Steckverbindern, dann kleben                                        |
 | Muschelgriffe | Bambus-PLA - Einstecken und verkleben. Eventuell die Steckverbinder Nachschleifen (2 Teile)                               |
-| Elektronikbox | PLA, PETG - Farbe variieren, Box, Deckel, Einschraubbare Führungen für Schlauch (4 Teile insgesamt)               |
+| Elektronikbox | PLA, PETG -  Box, Deckel, Einschraubbare Führungen für Schlauch (4 Teile insgesamt)               |
 | Wasserdeckel  | PLA, PETG (2 Teile)                                                                                                        |
-| Plexiglas     | Kann durch Bauteil "BlindCover" aus .step Datei ersetzt werden, 4mm Plexiglas, Vorsicht vor giftigen Kunststoffen |
-| Bais-Steckverbinder    | Teilweise sehr klein, nur der Kreuzverbinder in der Mitte ist zwingend erforderlich. |
+| Plexiglas     | Lasercutter - Kann durch Bauteil "BlindCover" aus .step Datei ersetzt werden, 4mm Plexiglas, Vorsicht vor giftigen Kunststoffen |
+| Bais-Steckverbinder    |PLA,PETG, Teilweise sehr klein, nur der Kreuzverbinder in der Mitte ist zwingend erforderlich. |
+| Schlauch-Steckverbinder    |SLA-Druck|
 
 ## Platinenübersicht
 
