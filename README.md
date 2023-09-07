@@ -21,10 +21,10 @@ Bauteile können verlötet oder mit Kabeln verbunden werden.
 | Lochrasterplatte (optional)                       | Hält andere Komponenten                                                                           |
 | 3*2er Schraubverbinder (optional)                 | Erlauben das Verbinden externer Komponenten (1* 4er für Ultraschallsensor, 1*2er für Motor Ground) |
 | 1*3er Schraubverbinder (optional)                 | Erlaubt das Verbinden externer Komponenten (Feuchtigkeitssensor)                                  |
-| Luftfahrtstecker 16mm                             | Erlauben das Verbinden externer Komponenten                                                       |
-| Kabel, Draht, Schrauben etc.                      | 4* M3 Schrauben für Plexiglas, 2* M5 Schrauben für Elektronikbox-Deckel,  2* M3 Schrauben für Wasserdeckel                       |
-| Schlauch 6mm                                      | Kanal für Wasser                                                                                  |
-| Plastik-Dosen mit Deckel (ca. 120mm*120mm) (1.3l) | Kann durch "PlasticJar" + "PlasticJarCover"(2* )" + "PlasticJarCoverAlternative" ersetzt werden.   |
+| Luftfahrtstecker 16mm  (optional)                              | Erlauben das Verbinden externer Komponenten                                                       |
+| Kabel, Draht, Schrauben etc. (optional)                        | 4* M3 Schrauben für Plexiglas, 2* M5 Schrauben für Elektronikbox-Deckel,  2* M3 Schrauben für Wasserdeckel                       |
+| Schlauch 6mm (optional)                                         | Kanal für Wasser                                                                                  |
+| Plastik-Dosen mit Deckel (ca. 120mm*120mm) (1.3l) (optional)   | Kann durch "PlasticJar" + "PlasticJarCover"(2* )" + "PlasticJarCoverAlternative" ersetzt werden.   |
 
 
 ## Komponenten zur Fertigung auf 3D Drucker und Lasercutter
