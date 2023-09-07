@@ -35,6 +35,7 @@ Plexiglas ist ein optionales Bauteil.
 | Bauteile      | Kommentar                                                                                                         |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Basis         | Aus PETG, 4 Teile + Bais-Steckverbinder. Bauteile sollten verklebt werden, ausrichten mit Steckverbindern, dann kleben                                        |
+| Basis-Bodenplatten | PLA, PETG (4 Teile) - von unten an die Basis kleben                                                                                                      |
 | Muschelgriffe | Bambus-PLA - Einstecken und verkleben. Eventuell die Steckverbinder Nachschleifen (2 Teile)                               |
 | Elektronikbox | PLA, PETG -  Box, Deckel, Einschraubbare Führungen für Schlauch (4 Teile insgesamt)               |
 | Wasserdeckel  | PLA, PETG (2 Teile)                                                                                                        |
