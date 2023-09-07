@@ -24,7 +24,7 @@ Bauteile können verlötet oder mit Kabeln verbunden werden.
 | Luftfahrtstecker 16mm  (optional)                              | Erlauben das Verbinden externer Komponenten                                                       |
 | Kabel, Draht, Schrauben etc. (optional)                        | 4* M3 Schrauben für Plexiglas, 2* M5 Schrauben für Elektronikbox-Deckel,  2* M3 Schrauben für Wasserdeckel                       |
 | Schlauch 6mm (optional)                                         | Kanal für Wasser                                                                                  |
-| Plastik-Dosen mit Deckel (ca. 120mm*120mm) (1.3l) (optional)   | Kann durch "PlasticJar" + "PlasticJarCover"(2* )" + "PlasticJarCoverAlternative" ersetzt werden.   |
+| Plastik-Dosen mit Deckel (ca. 120mm*120mm) (1.3l) (optional)   | Kann durch "PlasticJar" + "PlasticJarCover"(2* )" + "PlasticJarCoverAlternative" ersetzt werden. - Vorsicht: Gedruckte Teile evtl. nicht wasserdicht, am besten in PETG herstellen  |
 
 
 ## Komponenten zur Fertigung auf 3D Drucker und Lasercutter
