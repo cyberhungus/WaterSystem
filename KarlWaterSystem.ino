@@ -45,16 +45,16 @@ const int echoPinUS = 22;
 const int triggerPinUS = 23 ;
 
 //beschreibt den grenzwert, unter dem die Pumpe gestartet wird.
-int threshold = 3400;
+int threshold = 2000;
 
 //beschreibt die Pause zwischen Pumpstößen
 int Sequence_Delay(3000);
 
 //beschreibt distanzwert wenn tank voll (CM).
-const float distanceWhenFull = 0.5;
+const float distanceWhenFull = 4;
 
 //beschreibt distanzwert wenn tank leer (CM) .
-const float distanceWhenEmpty = 13;
+const float distanceWhenEmpty = 12;
 
 //Feuchtigkeit wird hier gespeichert damit der wert global verfügbar ist.
 //so kann er in der Netzwerk-UI angezeigt werden
@@ -148,6 +148,13 @@ void WaterCode(void * pvParameters ) {
   while (true) {
     //wenn nächster Messzeitpunkt erreicht, lese feuchtigkeitssensor aus
     if (millis() > nextMeasure) {
+
+      currentDistance = measureDistance();
+      percentage = percentageFromDistance(currentDistance);
+      Serial.print("Messe Distanz mit UltraSchall: ");
+      Serial.println(currentDistance);
+      Serial.print("Percentage:");
+      Serial.println(percentage);
       //lese Wassersensor
       moisture = analogRead(WaterSensor);
       delay(1);
@@ -159,10 +166,12 @@ void WaterCode(void * pvParameters ) {
       //trockener = moisture ist kleiner
       //feuchter =  moisture ist höher
       //wenn moisture kleiner grenzwert, dann pumpen
-      while (moisture > threshold) {
+      while (threshold < moisture) {
         Serial.println("Pumpvorgang");
-        Serial.print("Sensorwert:");
-        Serial.println(analogRead(WaterSensor));
+        Serial.print("Sensorwert: ");
+        Serial.print(analogRead(WaterSensor));
+        Serial.print("-Grenzwert: ");
+        Serial.println(threshold);
         LED_Red();
         digitalWrite(PumpRelay, HIGH);
         delay(Sequence_Delay);
@@ -170,6 +179,9 @@ void WaterCode(void * pvParameters ) {
         digitalWrite(PumpRelay, LOW);
         moisture = analogRead(WaterSensor);
         delay(Sequence_Delay);
+        if (threshold < moisture){
+          break; 
+        }
       }
       LED_Green();
       digitalWrite(PumpRelay, LOW);
@@ -201,12 +213,7 @@ void WaterCode(void * pvParameters ) {
 
     }
 
-    currentDistance = measureDistance();
-    percentage = percentageFromDistance(currentDistance); 
-    Serial.print("[TEST]Messe Distanz mit UltraSchall: ");
-    Serial.println(currentDistance);
-    Serial.print("[TEST]Percentage:");
-    Serial.println(percentage);
+
 
     if (autoCalibrationTriggered) {
       PerformAutoCalibration(10);
@@ -367,7 +374,7 @@ void serverStart() {
     request->send(200, "text/html", showMoisture());
   });
 
-    //api-route - gibt nur messwert des ultraschallsensors zurück
+  //api-route - gibt nur messwert des ultraschallsensors zurück
   server.on("/percentage", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(200, "text/html", showPercentage());
   });
@@ -387,7 +394,7 @@ void serverStart() {
     request->send(200, "text/html", showAutoCalState());
   });
 
-    //api route für grenzwert 
+  //api route für grenzwert
   server.on("/threshold", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(200, "text/html", showThreshold());
   });

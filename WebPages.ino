@@ -48,12 +48,13 @@ String MainPage() {
   
   sHTML += "<p>";
   sHTML += "Vor automatischer Kalibrierung Sensor in feuchte Erde stecken" ;
+  sHTML += "Trennen Sie den Pumpmotor vor der Kalibrierung"; 
   sHTML += "</p>";
   sHTML += "<form action=\"/autoCalibration\" method=\"get\">";
   sHTML += "<input type=\"submit\" value=\"System kalibrieren\">";
   sHTML += "</form>";
   sHTML += "<div id=\'autocalDiv\'></div>";
-
+ sHTML += "<hr>"; 
   sHTML += "<form action=\"/valueChange\" method=\"get\">";
   sHTML +=  "<input type=\"range\" min=\"100\" max=\"10000\" id=\"threshslide\" value=";
   sHTML += threshold;
@@ -77,15 +78,6 @@ String MainPage() {
   sHTML += "<div id=\'manualpumpdiv\'></div>";
 
   sHTML += "<div id=\'delayedpumpdiv\'></div>";
-
-
-  sHTML += "<p>";
-  sHTML += "Vor automatischer Kalibrierung Sensor in feuchte Erde stecken" ;
-  sHTML += "</p>";
-  sHTML += "<form action=\"/autoCalibration\" method=\"get\">";
-  sHTML += "<input type=\"submit\" value=\"System kalibrieren\">";
-  sHTML += "</form>";
-  sHTML += "<div id=\'autocalDiv\'></div>";
 
   sHTML += "<script>";
   sHTML += "console.log(\"JAVASCRIPT LOADED\");";
