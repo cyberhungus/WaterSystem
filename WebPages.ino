@@ -47,13 +47,21 @@ String MainPage() {
   sHTML += "<hr>";
   
   sHTML += "<p>";
-  sHTML += "Vor automatischer Kalibrierung Sensor in feuchte Erde stecken" ;
-  sHTML += "Trennen Sie den Pumpmotor vor der Kalibrierung"; 
+  sHTML += "Vor automatischer Kalibrierung Sensor in feuchte Erde stecken." ;
+  sHTML += "Trennen Sie den Pumpmotor vor der Kalibrierung."; 
   sHTML += "</p>";
   sHTML += "<form action=\"/autoCalibration\" method=\"get\">";
   sHTML += "<input type=\"submit\" value=\"System kalibrieren\">";
   sHTML += "</form>";
   sHTML += "<div id=\'autocalDiv\'></div>";
+   sHTML += "<hr>"; 
+  sHTML += "<form action=\"/valueChange\" method=\"get\">";
+  sHTML +=  "<input type=\"range\" min=\"50\" max=\"10000\" id=\"seqdelayslide\" value=";
+  sHTML += Sequence_Delay;
+  sHTML += " class=\"slider\" name=\"seqDelay\">";
+  sHTML += "<input type=\"submit\" value=\"Pumpdauer einstellen\" >";
+  sHTML += "</form>";
+  sHTML += "<div id=\'seqdelaydiv\'>5</div>";
  sHTML += "<hr>"; 
   sHTML += "<form action=\"/valueChange\" method=\"get\">";
   sHTML +=  "<input type=\"range\" min=\"100\" max=\"10000\" id=\"threshslide\" value=";
@@ -84,6 +92,7 @@ String MainPage() {
   sHTML += " const slider = document.getElementById(\'threshslide\');";
   sHTML += " const sliderdelay = document.getElementById(\'delayslider\');";
   sHTML += " const sliderduration = document.getElementById(\'durationslider\');";
+    sHTML += " const seqdelayslide = document.getElementById(\'seqdelayslide\');";
   sHTML += "console.log(slider);";
   sHTML += "const sliderValueElement = document.getElementById(\'threshslidediv\');";
   sHTML += "const sliderDelayElement = document.getElementById(\'delayslidediv\');";
@@ -95,6 +104,8 @@ String MainPage() {
   sHTML += "slider.addEventListener(\'mouseup\', function() {sliderValueElement.textContent = slider.value;  console.log(\"SLIDER MOVED\"); });";
   sHTML += "sliderdelay.addEventListener(\'mouseup\', function() {sliderDelayElement.textContent = sliderdelay.value+ \" Sek. verzögert\";  console.log(\"SLIDER MOVED\"); });";
   sHTML += "sliderduration.addEventListener(\'mouseup\', function() {sliderDurationElement.textContent = sliderduration.value + \" Sek. Pumpdauer\";  console.log(\"SLIDER MOVED\"); });";
+ 
+  sHTML += "seqdelayslide.addEventListener(\'mouseup\', function() {seqdelaydiv.textContent = seqdelayslide.value + \" Sek. Pumpdauer\";  console.log(\"SLIDER MOVED\"); });";
   sHTML += "console.log(\"INPUT LISTENER ADDED\");";
   sHTML += "</script>";
 
@@ -181,6 +192,18 @@ String MainPage() {
   sHTML += "xhttp.send();}";
   sHTML += "</script> ";
 
+//script für anzeige der Pumpdauer
+  sHTML +=  "<script>";
+  sHTML += "setInterval(function() {getData7();}," + String(interv) + ");";
+  sHTML += "function getData7() {";
+  sHTML += "var xhttp = new XMLHttpRequest();";
+  sHTML += "xhttp.onreadystatechange = function() {";
+  sHTML += "if (this.readyState == 4 && this.status == 200) {";
+  sHTML += "document.getElementById(\"seqdelaydiv\").innerHTML = ";
+  sHTML += "this.responseText; ";
+  sHTML += "}  }; xhttp.open(\"GET\", \"seqdelay\", true); ";
+  sHTML += "xhttp.send();}";
+  sHTML += "</script> ";
   sHTML += "<hr>";
   sHTML += "MM 2023 für MobilDigital";
   LED_Yellow();
@@ -250,6 +273,9 @@ String adminPage() {
 String showMoisture() {
   return String(moisture);
 }
+String showSequenceDelay() {
+  return String(Sequence_Delay);
+}
 String showThreshold() {
   return String(threshold);
 }
@@ -273,6 +299,8 @@ String showDelayedPumpState() {
     return "";
   }
 }
+
+
 
 String showAutoCalState() {
   if (autoCalibrationTriggered) {

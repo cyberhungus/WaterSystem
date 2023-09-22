@@ -10,7 +10,9 @@
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <DNSServer.h>
-
+//Für Ausschalten der Brownout-Detectors
+#include "soc/soc.h"
+#include "soc/rtc_cntl_reg.h"
 
 //LOGIN DATEN FÜR SYSTEM
 const char* ssid = "WasserSystem";
@@ -48,7 +50,7 @@ const int triggerPinUS = 23 ;
 int threshold = 2000;
 
 //beschreibt die Pause zwischen Pumpstößen
-int Sequence_Delay(3000);
+int Sequence_Delay = 10 00;
 
 //beschreibt distanzwert wenn tank voll (CM).
 const float distanceWhenFull = 4;
@@ -96,6 +98,9 @@ int delayedPumpDuration = 3;
 void setup() {
   Serial.begin(115200);
   Serial.println("Bewasserungssystem by MM 2023");
+
+  //Schaltet den Brownout-Detector aus
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
 
 
   //definiere Pins als ein und Ausgänge
@@ -179,8 +184,8 @@ void WaterCode(void * pvParameters ) {
         digitalWrite(PumpRelay, LOW);
         moisture = analogRead(WaterSensor);
         delay(Sequence_Delay);
-        if (threshold < moisture){
-          break; 
+        if (threshold < moisture) {
+          break;
         }
       }
       LED_Green();
@@ -397,6 +402,11 @@ void serverStart() {
   //api route für grenzwert
   server.on("/threshold", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(200, "text/html", showThreshold());
+  });
+
+  //api route für pumpdauer
+  server.on("/seqdelay", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(200, "text/html", showSequenceDelay());
   });
 
   //erlaubt die änderung von Systemvariablen

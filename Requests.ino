@@ -11,6 +11,15 @@ void changeValues(AsyncWebServerRequest *request) {
     Serial.println(newThreshold);
     threshold = newThreshold;
   }
+  if (request->hasParam("seqDelay")) {
+    String seqdelay = request->getParam("seqDelay")->value();
+    Serial.print("CHANGED PARAMETER - seqdelay: ");
+    Serial.println(seqdelay);
+    int newseqdelay = seqdelay.toInt();
+    Serial.print("AS INTEGER ");
+    Serial.println(newseqdelay);
+    Sequence_Delay = newseqdelay;
+  }
 
 
 
